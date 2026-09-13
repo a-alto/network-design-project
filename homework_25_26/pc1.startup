@@ -1,0 +1,10 @@
+/etc/init.d/networking restart
+
+# SSH-related configuration
+chmod 600 /root/.ssh/id_rsa
+chmod 700 /root/.ssh
+
+# VPN - Manually create the tun interface for this kathara image
+mkdir -p /dev/net
+mknod /dev/net/tun c 10 200
+chmod 600 /dev/net/tun

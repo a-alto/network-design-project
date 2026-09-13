@@ -1,0 +1,12 @@
+/etc/init.d/networking restart
+
+# Start DHCP server at boot
+/etc/init.d/isc-dhcp-server start
+
+# Routing rules
+ip route add default via 145.97.4.97
+
+# NAT and firewall rules
+iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
+iptables -A FORWARD -i eth0 -o eth1 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A FORWARD -i eth1 -o eth0 -m state --state NEW -j DROP

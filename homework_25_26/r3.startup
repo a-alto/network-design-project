@@ -1,0 +1,4 @@
+/etc/init.d/networking restart
+
+# Routing rules
+ip route add default via 50.0.0.7

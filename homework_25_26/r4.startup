@@ -1,0 +1,11 @@
+/etc/init.d/networking restart
+
+# Routing rules
+ip route add 50.0.0.0/24 via 50.0.0.8
+ip route add default via 193.201.29.254
+
+# Firewall rules
+iptables -F FORWARD
+iptables -P FORWARD DROP
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A FORWARD -p tcp --dport 22 -m state --state NEW -j ACCEPT

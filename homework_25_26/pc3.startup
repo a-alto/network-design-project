@@ -1,0 +1,4 @@
+/etc/init.d/networking restart
+
+# Routing rules
+ip route add 10.10.0.0/24 via 192.168.88.100
